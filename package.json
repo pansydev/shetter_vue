@@ -1,0 +1,30 @@
+{
+  "name": "shetter",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.11",
+    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "moment": "^2.29.1",
+    "patch-package": "^6.4.6",
+    "vue": "^3.0.5",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-graphql": "^1.0.0",
+    "@types/node": "^14.14.33",
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.5",
+    "postinstall-postinstall": "^2.1.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3",
+    "vite": "^2.0.5"
+  }
+}
