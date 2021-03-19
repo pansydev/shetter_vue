@@ -2,7 +2,12 @@
 
 import MainPage from "@shetter/views/MainPage.vue";
 
-const routes = [{ path: "/", component: MainPage }];
+const routes = [
+  {
+    path: "/",
+    component: MainPage
+  }
+];
 
 export const router = createRouter({
   history: createWebHashHistory(),

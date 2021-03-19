@@ -1,6 +1,5 @@
 <template>
-  <AppHeader />
-  <RouterView />
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
@@ -9,12 +8,13 @@ import { provideApolloClient } from "@vue/apollo-composable";
 import { apolloClient } from "@shetter/utils/client";
 
 import PostList from "@shetter/components/PostList.vue";
-import AppHeader from "@shetter/components/AppHeader.vue";
 
 export default defineComponent({
-  components: { AppHeader, PostList },
+  components: {
+    PostList
+  },
   setup() {
     provideApolloClient(apolloClient);
-  },
+  }
 });
 </script>

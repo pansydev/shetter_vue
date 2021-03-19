@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="post rounded-md px-4 py-4">
+  <article class="post rounded-md px-4 py-4">
     <div class="header flex">
       <!--      <p class="text-md text-gray-600 font-semibold">{{ post.author.username }}</p>-->
       <!--      <p class="ml-auto text-xs text-gray-600 font-semibold">{{ createdAt }}</p>-->
@@ -9,7 +9,7 @@
         {{ post.text }}
       </p>
     </div>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">

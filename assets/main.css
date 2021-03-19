@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  @apply flex justify-center;
+
+  background-color: whitesmoke;
+}
+
+button, .button {
+  @apply font-medium text-sm;
+  @apply border-gray-200 border;
+  @apply px-4 py-2;
+  @apply rounded-md transition;
+
+  @apply hover:bg-gray-100;
+  @apply disabled:opacity-50;
+}
+
+button.dark, .button.dark {
+  @apply border-none text-white;
+  @apply bg-gray-900;
+
+  @apply hover:bg-gray-800;
+}
+
+/*
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  @apply border border-gray-200 rounded-md p-12 w-full;
+} */
+
+/*
+button, .button {
+  @apply transition px-4 py-2 rounded-md text-white font-semibold text-xs;
+
+  background-color: rgb(28, 28, 28);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover,
+button:hover {
+  background-color: rgb(66, 66, 66);
+}
+
+.button.light,
+button.light {
+  border: 1px solid #00000015;
+  background-color: white;
+
+  color: black;
+}
+
+.button.light:hover,
+button.light:hover {
+  border: 1px solid #00000015;
+  background-color: #00000010;
+
+  color: black;
+}
+*/
