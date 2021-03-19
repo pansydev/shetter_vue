@@ -1,6 +1,16 @@
 ﻿<template>
-  <div class="posts">
-    <ShetterPost v-for="post in posts" :key="post.id" :post="post" />
+  <div class="space-y-4 flex justify-center">
+    <p v-if="loading">
+      <span class="material-icons-outlined animate-spin">
+        motion_photos_on
+      </span>
+    </p>
+    <shetter-post
+      v-if="!loading"
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+    />
   </div>
 </template>
 
@@ -13,18 +23,14 @@ import GetPostsQuery from "@shetter/queries/GetPosts.gql";
 import ShetterPost from "@shetter/components/ShetterPost.vue";
 
 export default defineComponent({
-  components: { ShetterPost },
+  components: {
+    ShetterPost
+  },
   setup() {
     const { result, loading } = useQuery<Post[]>(GetPostsQuery);
     const posts = useResult(result);
 
     return { posts, loading };
-  },
+  }
 });
 </script>
-
-<style>
-.posts > :not(:last-child) {
-  margin-bottom: 8px;
-}
-</style>
