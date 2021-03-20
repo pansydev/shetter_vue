@@ -1,42 +1,42 @@
 ﻿<template>
-  <main class="space-y-6">
-    <header class="flex items-center">
-      <div class="title mr-auto">
-        <h1 class="text-lg font-semibold">Shetter</h1>
-        <span class="text-sm text-gray-500">@unknown</span>
-      </div>
-      <a class="button" href="/login">Войти в аккаунт</a>
-    </header>
-
-    <form method="post" class="flex items-center pr-4 border border-gray-200 rounded-md h-auto">
-       <textarea
-         class="rounded-md border-none resize-none overflow-hidden text-sm w-full mr-auto p-4"
-         placeholder="Начните писать текст..."
-       ></textarea>
-      <button class="dark py-3" type="submit">Опубликовать</button>
+  <main>
+    <!-- NEW POST FORM -->
+    <form method="POST" class="post-form px-4 py-4 mb-4 flex items-center rounded-md">
+      <textarea
+        class="w-full text-justify text-sm resize-none overflow-hidden mr-3"
+        placeholder="Начните писать текст..."
+      ></textarea>
+      <button type="submit">Опубликовать</button>
     </form>
 
-    <post-list />
-    <pagination :value="currentPage" :total="totalPages" />
+    <PostList />
+
+    <footer class="pagination mt-4 flex justify-center">
+      <button class="light">←</button>
+      <button>1</button>
+      <button class="light">2</button>
+      <button class="light">3</button>
+      <button class="light">4</button>
+      <button class="light">5</button>
+      <button class="light">→</button>
+    </footer>
   </main>
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
-
 import PostList from "@shetter/components/PostList.vue";
-import Pagination from "@shetter/components/Pagination.vue";
 
-export default defineComponent({
-  components: {
-    PostList,
-    Pagination
-  },
-  setup() {
-    const currentPage = ref(1);
-    const totalPages = ref(7);
-
-    return { currentPage, totalPages };
-  }
-});
+export default {
+  components: { PostList },
+};
 </script>
+
+<style>
+.post-form {
+  border: 1px solid #00000015;
+}
+
+.pagination > :not(:last-child) {
+  margin-right: 5px;
+}
+</style>

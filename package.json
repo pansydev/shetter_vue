@@ -1,11 +1,13 @@
 {
   "name": "shetter",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "postinstall": "patch-package"
+    "postinstall": "husky install && patch-package",
+    "lint": "eslint src/**/*.{ts,vue} --max-warnings=0"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
@@ -21,9 +23,17 @@
   "devDependencies": {
     "@rollup/plugin-graphql": "^1.0.0",
     "@types/node": "^14.14.33",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
     "autoprefixer": "^10.2.5",
+    "eslint": "^7.22.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.7.0",
+    "husky": "^5.1.3",
     "postcss": "^8.2.8",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.2.1",

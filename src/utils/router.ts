@@ -5,8 +5,8 @@ import MainPage from "@shetter/views/MainPage.vue";
 const routes = [
   {
     path: "/",
-    component: MainPage
-  }
+    component: MainPage,
+  },
 ];
 
 export const router = createRouter({
