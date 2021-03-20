@@ -14,6 +14,12 @@ body {
   background-color: whitesmoke;
 }
 
+#app {
+  @apply w-2/6 my-4 p-8 shadow rounded-md bg-white;
+
+  height: fit-content;
+}
+
 button, .button {
   @apply font-medium text-sm;
   @apply border-gray-200 border;
