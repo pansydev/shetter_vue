@@ -9,10 +9,10 @@
     </header>
 
     <form method="post" class="flex items-center pr-4 border border-gray-200 rounded-md h-auto">
-       <textarea
-         class="rounded-md border-none resize-none overflow-hidden text-sm w-full mr-auto p-4 focus:ring-0"
-         placeholder="Начните писать текст..."
-       ></textarea>
+      <textarea
+        class="rounded-md border-none resize-none overflow-hidden text-sm w-full mr-auto p-4 focus:ring-0"
+        placeholder="Начните писать текст..."
+      ></textarea>
       <button class="dark py-3" type="submit">Опубликовать</button>
     </form>
 
@@ -30,13 +30,13 @@ import ShetterPagination from "@shetter/components/ShetterPagination.vue";
 export default defineComponent({
   components: {
     PostList,
-    ShetterPagination
+    ShetterPagination,
   },
   setup() {
     const currentPage = ref(1);
     const totalPages = ref(7);
 
     return { currentPage, totalPages };
-  }
+  },
 });
 </script>

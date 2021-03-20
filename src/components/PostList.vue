@@ -1,16 +1,11 @@
 ﻿<template>
   <div class="space-y-2 flex flex-col items-center">
     <p v-if="loading">
-      <span class="material-icons-outlined animate-spin">
-        motion_photos_on
-      </span>
+      <span class="material-icons-outlined animate-spin">motion_photos_on</span>
     </p>
-    <ShetterPost
-      v-if="!loading"
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
-    />
+    <div v-if="!loading" class="w-full space-y-2">
+      <ShetterPost v-if="!loading" v-for="post in posts" :key="post.id" :post="post" />
+    </div>
   </div>
 </template>
 
@@ -24,13 +19,13 @@ import ShetterPost from "@shetter/components/ShetterPost.vue";
 
 export default defineComponent({
   components: {
-    ShetterPost
+    ShetterPost,
   },
   setup() {
     const { result, loading } = useQuery<Post[]>(GetPostsQuery);
     const posts = useResult(result);
 
     return { posts, loading };
-  }
+  },
 });
 </script>
