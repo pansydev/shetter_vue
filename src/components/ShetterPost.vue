@@ -1,13 +1,11 @@
 ﻿<template>
-  <article class="post rounded-md px-4 py-4">
-    <div class="header flex">
-      <!--      <p class="text-md text-gray-600 font-semibold">{{ post.author.username }}</p>-->
-      <!--      <p class="ml-auto text-xs text-gray-600 font-semibold">{{ createdAt }}</p>-->
+  <article class="w-full border border-gray-200 rounded-md p-4 space-y-1">
+    <div class="flex">
+      <p class="text-sm text-gray-600 font-semibold">unknown</p>
+      <p class="text-xs text-gray-600 font-semibold ml-auto">{{ createdAt }}</p>
     </div>
-    <div class="content">
-      <p class="text text-sm text-gray-600">
-        {{ post.text }}
-      </p>
+    <div class="break-all">
+      <p class="text-sm text-gray-600">{{ post.text }}</p>
     </div>
   </article>
 </template>
@@ -32,9 +30,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-.post {
-  border: 1px solid #00000015;
-}
-</style>

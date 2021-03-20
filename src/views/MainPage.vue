@@ -16,8 +16,8 @@
       <button class="dark py-3" type="submit">Опубликовать</button>
     </form>
 
-    <post-list />
-    <pagination :value="currentPage" :total="totalPages" />
+    <PostList />
+    <ShetterPagination :value="currentPage" :total="totalPages" />
   </main>
 </template>
 
@@ -25,12 +25,12 @@
 import { ref, defineComponent } from "vue";
 
 import PostList from "@shetter/components/PostList.vue";
-import Pagination from "@shetter/components/Pagination.vue";
+import ShetterPagination from "@shetter/components/ShetterPagination.vue";
 
 export default defineComponent({
   components: {
     PostList,
-    Pagination
+    ShetterPagination
   },
   setup() {
     const currentPage = ref(1);

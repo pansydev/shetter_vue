@@ -1,11 +1,11 @@
 ﻿<template>
-  <div class="space-y-4 flex justify-center">
+  <div class="space-y-2 flex flex-col items-center">
     <p v-if="loading">
       <span class="material-icons-outlined animate-spin">
         motion_photos_on
       </span>
     </p>
-    <shetter-post
+    <ShetterPost
       v-if="!loading"
       v-for="post in posts"
       :key="post.id"
