@@ -4,7 +4,7 @@
       <span class="material-icons-outlined animate-spin">motion_photos_on</span>
     </p>
     <div v-if="!loading" class="w-full space-y-2">
-      <ShetterPost v-if="!loading" v-for="post in posts" :key="post.id" :post="post" />
+      <ShetterPost v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
