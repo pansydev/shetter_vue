@@ -17,26 +17,17 @@
     </form>
 
     <PostList />
-    <ShetterPagination :value="currentPage" :total="totalPages" />
   </main>
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
+import { defineComponent } from "vue";
 
 import PostList from "@shetter/components/PostList.vue";
-import ShetterPagination from "@shetter/components/ShetterPagination.vue";
 
 export default defineComponent({
   components: {
     PostList,
-    ShetterPagination,
-  },
-  setup() {
-    const currentPage = ref(1);
-    const totalPages = ref(7);
-
-    return { currentPage, totalPages };
   },
 });
 </script>

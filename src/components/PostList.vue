@@ -4,7 +4,7 @@
       <span class="material-icons-outlined animate-spin">motion_photos_on</span>
     </p>
     <div v-if="!loading" class="w-full space-y-2">
-      <ShetterPost v-for="post in posts" :key="post.id" :post="post" />
+      <PostItem v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
@@ -15,11 +15,11 @@ import { useQuery, useResult } from "@vue/apollo-composable";
 import { Post } from "@shetter/models";
 
 import GetPostsQuery from "@shetter/queries/GetPosts.gql";
-import ShetterPost from "@shetter/components/ShetterPost.vue";
+import PostItem from "@shetter/components/PostItem.vue";
 
 export default defineComponent({
   components: {
-    ShetterPost,
+    PostItem,
   },
   setup() {
     const { result, loading } = useQuery<Post[]>(GetPostsQuery);
