@@ -9,13 +9,14 @@
 }
 
 body {
-  @apply flex justify-center;
+  @apply md:flex md:justify-center;
 
   background-color: whitesmoke;
 }
 
 #app {
-  @apply w-2/6 my-4 p-8 shadow rounded-md bg-white;
+  @apply md:my-4 p-8 shadow rounded-md bg-white;
+  @apply w-full 2xl:w-4/12 lg:w-6/12 md:w-8/12;
 
   height: fit-content;
 }
