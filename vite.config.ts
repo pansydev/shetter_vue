@@ -1,21 +1,28 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import { resolve } from "path";
 
 import vue from "@vitejs/plugin-vue";
 import graphql from "@rollup/plugin-graphql";
 
-export default defineConfig({
-  plugins: [vue(), graphql()],
-  resolve: {
-    alias: {
-      "@shetter": resolve(__dirname, "src"),
+export default ({ mode }: { mode: string }) => {
+  process.env = {
+    ...process.env,
+    ...loadEnv(mode, process.cwd())
+  };
+
+  return defineConfig({
+    plugins: [vue(), graphql()],
+    resolve: {
+      alias: {
+        "@shetter": resolve(__dirname, "src")
+      }
     },
-  },
-  server: {
-    proxy: {
-      "/graphql": {
-        target: "http://localhost:5000/graphql",
-      },
-    },
-  },
-});
+    server: {
+      proxy: {
+        "/graphql": {
+          target: process.env.VITE_API_URL ?? "http://localhost:5000/graphql"
+        }
+      }
+    }
+  });
+}
