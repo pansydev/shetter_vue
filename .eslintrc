@@ -11,6 +11,7 @@
   ],
   "rules": {
     "vue/no-unused-components": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "vue/no-multiple-template-root": "off"
   }
 }

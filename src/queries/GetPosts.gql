@@ -1,6 +1,12 @@
-query GetPosts {
-  posts {
-    id
-    text
+query GetPosts($after: String, $pageSize: Int!) {
+  posts(first: $pageSize, after: $after) {
+    nodes {
+      id
+      text
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
   }
 }
