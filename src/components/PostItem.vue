@@ -23,9 +23,9 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const createdAt = computed(() => unix(props.post.creationTime).calendar());
-    const authorUsername = computed(() => props.post.author?.username ?? "unknown");
+  setup({ post }) {
+    const createdAt = computed(() => unix(post.creationTime).calendar());
+    const authorUsername = computed(() => post.author?.username ?? "unknown");
 
     return { createdAt, authorUsername };
   },
