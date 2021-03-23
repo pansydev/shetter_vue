@@ -8,8 +8,8 @@ export interface User extends Entity {
 
 export interface Post extends Entity {
   readonly text: string;
-  readonly author: User;
-  readonly createdAt: number;
+  readonly author?: User;
+  readonly creationTime: number;
 }
 
 export interface PageInfo {
