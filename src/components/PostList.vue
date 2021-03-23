@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="space-y-2 flex flex-col items-center">
-    <InfinityScroll>
+    <InfinityScroll class="w-full">
       <div v-if="!loading" class="w-full space-y-2">
         <PostItem v-for="post in postConnection.nodes" :key="post.id" :post="post" />
       </div>
