@@ -1,5 +1,6 @@
 ﻿{
   "htmlWhitespaceSensitivity": "ignore",
   "printWidth": 120,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
 }
