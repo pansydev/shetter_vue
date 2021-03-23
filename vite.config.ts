@@ -21,8 +21,7 @@ export default ({ mode }: { mode: string }) => {
       proxy: {
         "/graphql": {
           target: process.env.VITE_API_URL ?? "http://localhost:5000/graphql",
-          changeOrigin: true,
-          secure: false
+          changeOrigin: true
         },
       },
     },
