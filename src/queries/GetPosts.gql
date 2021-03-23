@@ -3,6 +3,10 @@ query GetPosts($after: String, $pageSize: Int!) {
     nodes {
       id
       text
+      creationTime
+      author {
+        username
+      }
     }
     pageInfo {
       hasNextPage

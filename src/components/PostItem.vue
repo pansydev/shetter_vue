@@ -1,7 +1,7 @@
 ﻿<template>
   <article class="w-full border border-gray-200 rounded-md p-4 space-y-1">
     <div class="flex">
-      <p class="text-sm text-gray-600 font-semibold">unknown</p>
+      <p class="text-sm text-gray-600 font-semibold">{{ authorUsername }}</p>
       <p class="text-xs text-gray-600 font-semibold ml-auto">{{ createdAt }}</p>
     </div>
     <div class="break-all">
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import moment from "moment";
+import { unix } from "moment";
 
 import { defineComponent, computed, PropType } from "vue";
 import { Post } from "@shetter/models";
@@ -24,9 +24,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const createdAt = computed(() => moment(props.post.createdAt).calendar());
+    const createdAt = computed(() => unix(props.post.creationTime).calendar());
+    const authorUsername = computed(() => props.post.author?.username ?? "unknown");
 
-    return { createdAt };
+    return { createdAt, authorUsername };
   },
 });
 </script>
