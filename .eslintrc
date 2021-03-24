@@ -11,7 +11,13 @@
   ],
   "rules": {
     "vue/no-unused-components": "warn",
-    "no-unused-vars": "warn",
-    "vue/no-multiple-template-root": "off"
+    "no-unused-vars": "off",
+    "vue/no-multiple-template-root": "off",
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
