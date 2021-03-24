@@ -1,11 +1,13 @@
 query GetPosts($after: String, $pageSize: Int!) {
   posts(first: $pageSize, after: $after) {
-    nodes {
-      id
-      text
-      creationTime
-      author {
-        username
+    edges {
+      node {
+        id
+        text
+        creationTime
+        author {
+          username
+        }
       }
     }
     pageInfo {

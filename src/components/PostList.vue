@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="space-y-2 flex flex-col items-center">
     <div v-if="postConnection" class="w-full space-y-2">
-      <PostItem v-for="post in postConnection.nodes" :key="post.id" :post="post" />
+      <PostItem v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <LoadingSpinner v-if="loading" />
     <ScrollSensor v-if="!loading" @visible="handleScrollDown" />
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { Connection, Post, QueryResult } from "@shetter/models";
 
@@ -30,6 +30,7 @@ export default defineComponent({
     const { result, loading, fetchMore, variables } = useQuery<Result>(GetPostsQuery, { pageSize: 5 });
 
     const postConnection = useResult(result);
+    const posts = computed(() => postConnection.value.edges.map(x => x.node));
 
     const handleScrollDown = () => {
       if (!postConnection.value?.pageInfo.hasNextPage) return;
@@ -41,21 +42,10 @@ export default defineComponent({
           ...variables,
           after: postConnection.value?.pageInfo.endCursor,
         },
-        updateQuery: (previousQueryResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return previousQueryResult;
-
-          return {
-            posts: {
-              ...previousQueryResult.posts,
-              nodes: [...previousQueryResult.posts.nodes, ...fetchMoreResult.posts.nodes],
-              pageInfo: fetchMoreResult.posts.pageInfo,
-            },
-          };
-        },
       });
     };
 
-    return { postConnection, loading, handleScrollDown };
+    return { postConnection, posts, loading, handleScrollDown };
   },
 });
 </script>
