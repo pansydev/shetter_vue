@@ -2,6 +2,7 @@
 
 import MainPage from "@shetter/pages/MainPage/MainPage.vue";
 import LoginPage from "@shetter/pages/LoginPage/LoginPage.vue";
+import RegisterPage from "@shetter/pages/RegisterPage/RegisterPage.vue";
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/login",
     component: LoginPage,
+  },
+  {
+    path: "/register",
+    component: RegisterPage,
   },
 ];
 
