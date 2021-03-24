@@ -3,8 +3,8 @@
     <div v-if="postConnection" class="w-full space-y-2">
       <PostItem v-for="post in postConnection.nodes" :key="post.id" :post="post" />
     </div>
-    <Loading v-if="loading" />
-    <Sensor v-if="!loading" @visible="handleScrollDown" />
+    <LoadingSpinner v-if="loading" />
+    <ScrollSensor v-if="!loading" @visible="handleScrollDown" />
   </div>
 </template>
 
@@ -14,15 +14,15 @@ import { useQuery, useResult } from "@vue/apollo-composable";
 import { Connection, Post, QueryResult } from "@shetter/models";
 
 import GetPostsQuery from "@shetter/queries/GetPosts.gql";
-import Loading from "@shetter/components/Loading.vue";
+import LoadingSpinner from "@shetter/components/LoadingSpinner.vue";
 import PostItem from "@shetter/components/PostItem.vue";
-import Sensor from "@shetter/components/Sensor.vue";
+import ScrollSensor from "@shetter/components/ScrollSensor.vue";
 
 export default defineComponent({
   components: {
-    Loading,
+    LoadingSpinner,
     PostItem,
-    Sensor,
+    ScrollSensor,
   },
   setup() {
     type Result = QueryResult<"posts", Connection<Post>>;
