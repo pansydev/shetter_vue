@@ -8,10 +8,10 @@
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
-    <footer class="flex space-x-2">
-      <button class="flex-1">Войти</button>
-      <a class="button dark flex-1" href="register.html">Регистрация</a>
-    </footer>
+    <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
+      <button type="submit" class="flex-1">Войти</button>
+      <RouterLink class="button dark flex-1" to="/register">Регистрация</RouterLink>
+    </form>
   </ShetterContainer>
 </template>
 
@@ -28,7 +28,11 @@ export default defineComponent({
     const username = ref<string>();
     const password = ref<string>();
 
-    return { username, password };
+    const handleFormSubmit = () => {
+      console.log(username, password);
+    };
+
+    return { username, password, handleFormSubmit };
   },
 });
 </script>
