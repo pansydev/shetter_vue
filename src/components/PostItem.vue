@@ -11,8 +11,7 @@
 </template>
 
 <script lang="ts">
-import { unix } from "moment";
-
+import { DateTime } from "luxon";
 import { defineComponent, computed, PropType } from "vue";
 import { Post } from "@shetter/models";
 
@@ -24,7 +23,7 @@ export default defineComponent({
     },
   },
   setup({ post }) {
-    const createdAt = computed(() => unix(post.creationTime).calendar());
+    const createdAt = computed(() => DateTime.fromSeconds(post.creationTime).toRelative());
     const authorUsername = computed(() => post.author?.username ?? "unknown");
 
     return { createdAt, authorUsername };
