@@ -4,7 +4,7 @@
       <PostItem v-for="post in postConnection.nodes" :key="post.id" :post="post" />
     </div>
     <LoadingSpinner v-if="loading" />
-    <ScrollSensor v-if="!loading" @visible="handleScrollDown" />
+    <ViewportBlock v-if="!loading" @enter="handleScrollDown" />
   </div>
 </template>
 
@@ -16,13 +16,13 @@ import { Connection, Post, QueryResult } from "@shetter/models";
 import GetPostsQuery from "@shetter/queries/GetPosts.gql";
 import LoadingSpinner from "@shetter/components/LoadingSpinner.vue";
 import PostItem from "@shetter/components/PostItem.vue";
-import ScrollSensor from "@shetter/components/ScrollSensor.vue";
+import ViewportBlock from "@shetter/components/ViewportBlock.vue";
 
 export default defineComponent({
   components: {
     LoadingSpinner,
     PostItem,
-    ScrollSensor,
+    ViewportBlock,
   },
   setup() {
     type Result = QueryResult<"posts", Connection<Post>>;

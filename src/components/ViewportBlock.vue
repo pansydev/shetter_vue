@@ -6,10 +6,10 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  emits: ["visible"],
+  emits: ["enter", "leave"],
   setup(_, context) {
-    const visibilityChanged = visible => {
-      if (visible) context.emit("visible");
+    const visibilityChanged = (visible: boolean) => {
+      context.emit(visible ? "enter" : "leave");
     };
 
     return { visibilityChanged };
