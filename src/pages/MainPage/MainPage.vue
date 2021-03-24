@@ -23,7 +23,7 @@
 <script>
 import { defineComponent } from "vue";
 
-import PostList from "@shetter/components/PostList.vue";
+import PostList from "@shetter/pages/MainPage/components/PostList.vue";
 
 export default defineComponent({
   components: {
