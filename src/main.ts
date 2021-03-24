@@ -9,8 +9,8 @@ createApp(App)
   .use(router)
   .directive("observe-visibility", {
     beforeMount: (el, binding, node) => {
-      (node as any).context = binding.instance
-      observeVisibility.bind(el, binding, node)
+      (node as any).context = binding.instance;
+      observeVisibility.bind(el, binding, node);
     },
     updated: observeVisibility.update,
     unmounted: observeVisibility.unbind,
