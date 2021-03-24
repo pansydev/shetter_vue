@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="space-y-2 flex flex-col items-center">
-    <div class="w-full space-y-2">
+    <div v-if="postConnection" class="w-full space-y-2">
       <PostItem v-for="post in postConnection.nodes" :key="post.id" :post="post" />
     </div>
     <Loading v-if="loading" />
@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useQuery, useResult } from "@vue/apollo-composable";
-import { Connection, Post } from "@shetter/models";
+import { Connection, Post, QueryResult } from "@shetter/models";
 
 import GetPostsQuery from "@shetter/queries/GetPosts.gql";
 import Loading from "@shetter/components/Loading.vue";
@@ -25,14 +25,11 @@ export default defineComponent({
     Sensor,
   },
   setup() {
-    const { result, loading, fetchMore, variables } = useQuery<Connection<Post>>(GetPostsQuery, {
-      pageSize: 5,
-      cursor: null,
-    });
+    type Result = QueryResult<"posts", Connection<Post>>;
 
-    const postConnection = useResult(result, {
-      nodes: [],
-    });
+    const { result, loading, fetchMore, variables } = useQuery<Result>(GetPostsQuery, { pageSize: 5 });
+
+    const postConnection = useResult(result);
 
     const handleScrollDown = () => {
       if (!postConnection.value?.pageInfo.hasNextPage) return;
@@ -44,16 +41,17 @@ export default defineComponent({
           ...variables,
           after: postConnection.value?.pageInfo.endCursor,
         },
-        updateQuery: (previousQueryResult, { fetchMoreResult }) => ({
-          ...previousQueryResult,
-          posts: {
-            ...previousQueryResult.posts,
-            nodes: [...previousQueryResult.posts.nodes, ...fetchMoreResult.posts.nodes],
-            pageInfo: {
-              ...fetchMoreResult.posts.pageInfo,
+        updateQuery: (previousQueryResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return previousQueryResult;
+
+          return {
+            posts: {
+              ...previousQueryResult.posts,
+              nodes: [...previousQueryResult.posts.nodes, ...fetchMoreResult.posts.nodes],
+              pageInfo: fetchMoreResult.posts.pageInfo,
             },
-          },
-        }),
+          };
+        },
       });
     };
 
