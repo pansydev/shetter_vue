@@ -8,21 +8,25 @@
   font-family: "Open Sans", sans-serif;
 }
 
+html {
+  @apply h-full;
+}
+
 body {
-  @apply md:flex md:justify-center;
+  @apply flex justify-center;
+  @apply items-start md:items-center;
+  @apply w-full min-h-full;
 
   background-color: whitesmoke;
 }
 
 #app {
-  @apply md:my-4 p-8 shadow rounded-md bg-white;
-  @apply w-full 2xl:w-4/12 lg:w-6/12 md:w-8/12;
-
-  height: fit-content;
+  @apply w-full h-full;
+  @apply flex justify-center items-center;
 }
 
 button, .button {
-  @apply font-medium text-sm;
+  @apply font-medium text-sm text-center;
   @apply border-gray-200 border;
   @apply px-4 py-2;
   @apply rounded-md transition;
@@ -38,4 +42,12 @@ button.dark, .button.dark {
   @apply bg-gray-900;
 
   @apply hover:bg-gray-800;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  @apply border-gray-200 border;
+  @apply rounded-md;
+  @apply px-4 py-3;
+  @apply w-full text-sm;
+  @apply focus:ring-1;
 }
