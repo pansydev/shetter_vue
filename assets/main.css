@@ -14,15 +14,14 @@ html {
 
 body {
   @apply flex justify-center;
-  @apply items-start md:items-center;
   @apply w-full min-h-full;
 
   background-color: whitesmoke;
 }
 
 #app {
-  @apply w-full h-full;
-  @apply flex justify-center items-center;
+  @apply w-full min-h-full;
+  @apply flex justify-center;
 }
 
 button, .button {

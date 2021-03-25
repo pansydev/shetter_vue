@@ -1,6 +1,6 @@
 <template>
-  <ShetterContainer class="space-y-6 w-full 2xl:w-3/12 lg:w-5/12 md:w-7/12">
-    <header class="flex flex-col items-center space-y-2">
+  <ShetterContainer class="space-y-6 self-center w-full 2xl:w-3/12 lg:w-4/12 md:w-6/12 sm:w-7/12">
+    <header class="text-center space-y-2">
       <h1 class="text-xl font-semibold">Авторизация в Shetter</h1>
       <p class="text-sm text-gray-500">Введите данные, чтобы войти в аккаунт</p>
     </header>
@@ -9,8 +9,8 @@
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
     <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
-      <button type="submit" class="flex-1">Войти</button>
-      <RouterLink class="button dark flex-1" to="/register">Регистрация</RouterLink>
+      <button class="flex-1 dark" type="submit">Войти</button>
+      <RouterLink class="flex-1 button" to="/register">Регистрация</RouterLink>
     </form>
   </ShetterContainer>
 </template>
