@@ -1,0 +1,16 @@
+mutation Refresh($refreshToken: String!) {
+  refresh(refreshToken: $refreshToken) {
+    __typename
+
+    ... on RefreshSuccessResult {
+      tokens {
+        accessToken
+        refreshToken
+      }
+    }
+
+    ... on RefreshFailureResult {
+      code
+    }
+  }
+}

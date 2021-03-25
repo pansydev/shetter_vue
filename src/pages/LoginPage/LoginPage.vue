@@ -19,10 +19,11 @@
 import { ref, defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
-import { AuthenticationResult, QueryResult } from "@shetter/models";
+import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@shetter/models";
 
 import AuthenticationMutation from "@shetter/queries/Authentication.gql";
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
+import { tokenManager } from "@shetter/utils/tokenManager";
 
 export default defineComponent({
   components: {
@@ -36,7 +37,7 @@ export default defineComponent({
 
     type Result = QueryResult<"auth", AuthenticationResult>;
 
-    const { mutate: authenticate, loading, onDone, onError } = useMutation<Result>(AuthenticationMutation);
+    const { mutate: authenticate, onDone, onError } = useMutation<Result>(AuthenticationMutation);
 
     const handleFormSubmit = async () => {
       const { data } = await authenticate({
@@ -48,12 +49,8 @@ export default defineComponent({
 
       const { auth: result } = data;
 
-      if (result.__typename === "AuthenticationSuccessResult") {
-        const { accessToken, refreshToken } = result.tokens;
-
-        window.localStorage.setItem("accessToken", accessToken);
-        window.localStorage.setItem("refreshToken", refreshToken);
-
+      if (result.__typename === AuthenticationResultType.AuthenticationSuccessResult) {
+        tokenManager.setTokens(result.tokens);
         return router.replace({ name: "home" });
       }
 

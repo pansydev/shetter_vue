@@ -1,4 +1,5 @@
 import { NavigationGuardWithThis } from "vue-router";
+import { tokenManager } from "@shetter/utils/tokenManager";
 
 export enum AccessLevel {
   Authorized,
@@ -10,13 +11,9 @@ export const AuthNavigationGuard = {
   unauthorized: () => authNavigationGuard(AccessLevel.Unauthorized),
 };
 
-export function authNavigationGuard(
-  accessLevel: AccessLevel
-): NavigationGuardWithThis<undefined> | NavigationGuardWithThis<undefined>[] | undefined {
+export function authNavigationGuard(accessLevel: AccessLevel): NavigationGuardWithThis<undefined> {
   return (to, from, next) => {
-    const accessToken = window.localStorage.getItem("accessToken");
-    const currentAccessLevel = accessToken ? AccessLevel.Authorized : AccessLevel.Unauthorized;
-
+    const currentAccessLevel = tokenManager.authenticated() ? AccessLevel.Authorized : AccessLevel.Unauthorized;
     return next(accessLevel === currentAccessLevel);
   };
 }

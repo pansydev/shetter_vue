@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 export interface PageInfo {
   readonly endCursor: string;
   readonly startCursor: string;
@@ -19,4 +21,12 @@ export type QueryResult<TField extends string, TResult> = {
 export interface TokenPair {
   accessToken: string;
   refreshToken: string;
+}
+
+export interface TokenPayload {
+  sid: string;
+  uid: number;
+  exp: DateTime;
+
+  username: string;
 }
