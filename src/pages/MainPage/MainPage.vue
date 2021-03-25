@@ -1,5 +1,5 @@
 ﻿<template>
-  <ShetterContainer class="space-y-6 md:my-4 w-full 2xl:w-4/12 lg:w-6/12 md:w-8/12">
+  <ShetterContainer class="space-y-6 sm:my-4 w-full 2xl:w-4/12 lg:w-6/12 md:w-8/12">
     <AppHeader />
     <PostForm />
     <PostList />
