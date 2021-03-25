@@ -10,7 +10,6 @@ const routes: RouteRecordRaw[] = [
     name: "home",
     path: "/",
     component: MainPage,
-    beforeEnter: AuthNavigationGuard.all(),
   },
   {
     path: "/login",
