@@ -48,5 +48,5 @@ input[type="text"], input[type="password"], input[type="email"] {
   @apply rounded-md;
   @apply px-4 py-3;
   @apply w-full text-sm;
-  @apply focus:ring-1;
+  @apply focus:ring-0 focus:border-gray-200;
 }
