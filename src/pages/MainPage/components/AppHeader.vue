@@ -10,21 +10,27 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { tokenManager } from "@shetter/utils/tokenManager";
 
 export default {
   name: "AppHeader",
-  setup() {
-    const authenticated = ref(tokenManager.authenticated());
+  props: {
+    authenticated: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ["update:authenticated"],
+  setup(_, context) {
     const username = computed(() => tokenManager.username);
 
     const logout = () => {
       tokenManager.clearTokens();
-      authenticated.value = false;
+      context.emit("update:authenticated", false);
     };
 
-    return { authenticated, username, logout };
+    return { username, logout };
   },
 };
 </script>

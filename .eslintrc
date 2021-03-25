@@ -18,6 +18,7 @@
       {
         "endOfLine": "auto"
       }
-    ]
+    ],
+    "vue/no-v-model-argument": "off"
   }
 }
