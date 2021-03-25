@@ -1,21 +1,26 @@
-﻿import { createRouter, createWebHashHistory } from "vue-router";
+﻿import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { AuthNavigationGuard } from "@shetter/utils/authNavigationGuard";
 
 import MainPage from "@shetter/pages/MainPage/MainPage.vue";
 import LoginPage from "@shetter/pages/LoginPage/LoginPage.vue";
 import RegisterPage from "@shetter/pages/RegisterPage/RegisterPage.vue";
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
+    name: "home",
     path: "/",
     component: MainPage,
+    beforeEnter: AuthNavigationGuard.all(),
   },
   {
     path: "/login",
     component: LoginPage,
+    beforeEnter: AuthNavigationGuard.unauthorized(),
   },
   {
     path: "/register",
     component: RegisterPage,
+    beforeEnter: AuthNavigationGuard.unauthorized(),
   },
 ];
 

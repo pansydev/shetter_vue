@@ -17,7 +17,11 @@
 
 <script lang="ts">
 import { ref, defineComponent } from "vue";
+import { useRouter } from "vue-router";
+import { useMutation } from "@vue/apollo-composable";
+import { AuthenticationResult, QueryResult } from "@shetter/models";
 
+import AuthenticationMutation from "@shetter/queries/Authentication.gql";
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 
 export default defineComponent({
@@ -28,9 +32,42 @@ export default defineComponent({
     const username = ref<string>();
     const password = ref<string>();
 
-    const handleFormSubmit = () => {
-      console.log(username, password);
+    const router = useRouter();
+
+    type Result = QueryResult<"auth", AuthenticationResult>;
+
+    const { mutate: authenticate, loading, onDone, onError } = useMutation<Result>(AuthenticationMutation);
+
+    const handleFormSubmit = async () => {
+      const { data } = await authenticate({
+        username: username.value,
+        password: password.value,
+      });
+
+      if (!data) return;
+
+      const { auth: result } = data;
+
+      if (result.__typename === "AuthenticationSuccessResult") {
+        const { accessToken, refreshToken } = result.tokens;
+
+        window.localStorage.setItem("accessToken", accessToken);
+        window.localStorage.setItem("refreshToken", refreshToken);
+
+        return router.replace({ name: "home" });
+      }
+
+      alert(result.code);
     };
+
+    onDone(() => {
+      username.value = "";
+      password.value = "";
+    });
+
+    onError(error => {
+      console.log(error);
+    });
 
     return { username, password, handleFormSubmit };
   },

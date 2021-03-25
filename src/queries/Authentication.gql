@@ -1,0 +1,16 @@
+mutation Authentication($username: String!, $password: String!) {
+  auth(username: $username, password: $password) {
+    __typename
+
+    ... on AuthenticationSuccessResult {
+      tokens {
+        accessToken
+        refreshToken
+      }
+    }
+
+    ... on AuthenticationFailureResult {
+      code
+    }
+  }
+}
