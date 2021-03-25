@@ -27,9 +27,14 @@ export default defineComponent({
   setup() {
     type Result = QueryResult<"posts", Connection<Post>>;
 
-    const { result, loading, fetchMore, variables } = useQuery<Result>(GetPostsQuery, { pageSize: 5 });
+    const { result, loading, fetchMore, variables } = useQuery<Result>(
+      GetPostsQuery,
+      { pageSize: 5 },
+      { nextFetchPolicy: "cache-only" }
+    );
 
     const postConnection = useResult(result);
+
     const posts = computed(() => postConnection.value.edges.map(x => x.node));
 
     const handleScrollDown = () => {

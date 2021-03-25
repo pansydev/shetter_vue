@@ -14,6 +14,7 @@
 import { DateTime } from "luxon";
 import { defineComponent, computed, PropType } from "vue";
 import { Post } from "@shetter/models";
+import { useNow } from "@shetter/utils/time";
 
 export default defineComponent({
   props: {
@@ -23,7 +24,16 @@ export default defineComponent({
     },
   },
   setup({ post }) {
-    const createdAt = computed(() => DateTime.fromSeconds(post.creationTime).toRelative());
+    const now = useNow();
+
+    const createdAt = computed(() => {
+      if (post.creationTime > now.value.toSeconds() - 1) {
+        return "только что";
+      }
+
+      return DateTime.fromSeconds(post.creationTime).toRelative({ base: now.value });
+    });
+
     const authorUsername = computed(() => post.author?.username ?? "unknown");
 
     return { createdAt, authorUsername };
