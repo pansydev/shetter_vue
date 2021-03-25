@@ -5,6 +5,7 @@
       <p class="text-sm text-gray-500">Введите данные, чтобы войти в аккаунт</p>
     </header>
     <main class="space-y-2">
+      <ErrorAlert v-if="errorMessage" :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
@@ -24,14 +25,18 @@ import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@sh
 import AuthenticationMutation from "@shetter/queries/Authentication.gql";
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import { tokenManager } from "@shetter/utils/tokenManager";
+import ErrorAlert from "@shetter/components/ErrorAlert.vue";
 
 export default defineComponent({
   components: {
+    ErrorAlert,
     ShetterContainer,
   },
   setup() {
     const username = ref<string>();
     const password = ref<string>();
+
+    const errorMessage = ref<string>();
 
     const router = useRouter();
 
@@ -54,7 +59,7 @@ export default defineComponent({
         return router.replace({ name: "home" });
       }
 
-      alert(result.code);
+      errorMessage.value = result.code;
     };
 
     onDone(() => {
@@ -63,10 +68,10 @@ export default defineComponent({
     });
 
     onError(error => {
-      console.log(error);
+      errorMessage.value = error.message;
     });
 
-    return { username, password, handleFormSubmit };
+    return { username, password, errorMessage, handleFormSubmit };
   },
 });
 </script>

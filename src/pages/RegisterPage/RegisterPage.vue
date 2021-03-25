@@ -5,6 +5,7 @@
       <p class="text-sm text-gray-500">Введите данные, чтобы зарегистрироваться</p>
     </header>
     <main class="space-y-2">
+      <ErrorAlert v-if="errorMessage" :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
@@ -19,20 +20,24 @@
 import { ref, defineComponent } from "vue";
 
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
+import ErrorAlert from "@shetter/components/ErrorAlert.vue";
 
 export default defineComponent({
   components: {
+    ErrorAlert,
     ShetterContainer,
   },
   setup() {
     const username = ref<string>();
     const password = ref<string>();
 
+    const errorMessage = ref<string>();
+
     const handleFormSubmit = () => {
       console.log(username, password);
     };
 
-    return { username, password, handleFormSubmit };
+    return { username, password, errorMessage, handleFormSubmit };
   },
 });
 </script>
