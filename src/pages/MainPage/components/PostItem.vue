@@ -31,7 +31,10 @@ export default defineComponent({
         return "только что";
       }
 
-      return DateTime.fromSeconds(post.creationTime).toRelative({ base: now.value });
+      return DateTime.fromSeconds(post.creationTime).toRelative({
+        base: now.value,
+        locale: "ru",
+      });
     });
 
     const authorUsername = computed(() => post.author?.username ?? "unknown");
