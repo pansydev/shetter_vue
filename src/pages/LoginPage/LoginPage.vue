@@ -5,7 +5,7 @@
       <p class="text-sm text-gray-500">Введите данные, чтобы войти в аккаунт</p>
     </header>
     <main class="space-y-2">
-      <ErrorAlert v-if="errorMessage" :message="errorMessage" />
+      <ErrorAlert :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
