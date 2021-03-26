@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+    
+    - name: Restore dependencies
+      run: yarn
+      
+    - name: Build for production
+      run: yarn build
+      
+    - name: Deploy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        username: ${{ secrets.SSH_USERNAME }}
+        source: "dist"
+        target: ${{ secrets.SSH_TARGET_PATH }}
+        strip_components: 1
