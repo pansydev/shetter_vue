@@ -228,6 +228,44 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
+"@intlify/core-base@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@intlify/core-base/-/core-base-9.0.0.tgz#3de223b8532c535d022e5be58f7d56a26d2fb12f"
+  integrity sha512-dxqakT94EV2bFshG3LENQUPWX9yJFCga1BOwJ6mz7J8LnAYVB9Kxw7NRyE2ybN31USW2IUTQH6WWR1yDbCiefQ==
+  dependencies:
+    "@intlify/message-compiler" "9.0.0"
+    "@intlify/message-resolver" "9.0.0"
+    "@intlify/runtime" "9.0.0"
+    "@intlify/shared" "9.0.0"
+
+"@intlify/message-compiler@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.0.0.tgz#8a1079f8aebcde33057ce769817691ce27ad3e0d"
+  integrity sha512-3oiLj+8z6koRYJwknazjilBsrqnJEAJywr/t39MYVy2yPmwOI1+NDfdDwM9U3ioA2RvsQEUICqW8gmjq1YIElw==
+  dependencies:
+    "@intlify/message-resolver" "9.0.0"
+    "@intlify/shared" "9.0.0"
+    source-map "0.6.1"
+
+"@intlify/message-resolver@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@intlify/message-resolver/-/message-resolver-9.0.0.tgz#0077ec24606b6486d238bdef9044e27729f4782c"
+  integrity sha512-LVK4cwu1l33yvBy0UQkEdXm6pZUcbbiparobruJXz+U8jRTmYHBprN59j59YKXEKcV43cHfzNveaQIm84bgxvQ==
+
+"@intlify/runtime@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@intlify/runtime/-/runtime-9.0.0.tgz#bf9415ff90c746a9be38a5c32f71cbbe9848eee8"
+  integrity sha512-UqCKduZezb5/qA+XPRfHVvXoLmhnQ8iKMyCh0Lg3ZwjW2vOMep/AgZU3T9cgESe67r4buPYHs7nOBSHbTdjNxg==
+  dependencies:
+    "@intlify/message-compiler" "9.0.0"
+    "@intlify/message-resolver" "9.0.0"
+    "@intlify/shared" "9.0.0"
+
+"@intlify/shared@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@intlify/shared/-/shared-9.0.0.tgz#d85b3b5f9033f377c5cf2202cf2459aa49948f36"
+  integrity sha512-0r4v7dnY8g/Jfx2swUWy2GyfH/WvIpWvkU4OIupvxDTWiE8RhcpbOCVvqpVh/xGi0proHQ/r2Dhc0QSItUsfDQ==
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
@@ -448,6 +486,11 @@
   dependencies:
     "@vue/compiler-dom" "3.0.7"
     "@vue/shared" "3.0.7"
+
+"@vue/devtools-api@^6.0.0-beta.5":
+  version "6.0.0-beta.7"
+  resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.0.0-beta.7.tgz#1d306613c93b9a837a3776b1b9255502662f850f"
+  integrity sha512-mIfqX8ZF6s2ulelIzfxGk9sFoigpoeK/2/DlWrtBGWfvwaK3kR1P2bxNkZ0LbJeuKHfcRP6hGZtGist7nxUN9A==
 
 "@vue/eslint-config-prettier@^6.0.0":
   version "6.0.0"
@@ -2406,7 +2449,7 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-source-map@^0.6.1:
+source-map@0.6.1, source-map@^0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
@@ -2726,6 +2769,15 @@ vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.6.0:
     espree "^6.2.1"
     esquery "^1.4.0"
     lodash "^4.17.15"
+
+vue-i18n@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.0.0.tgz#a04c41d5ed3d5a068e923517bfaa0abcbc84e174"
+  integrity sha512-iks0eJDv/4cK/7tl/ooMUroNVVIGOK4kKS1PIHmPQk7QjT/sDfFM84vjPKgpARbw0GjJsOiADL43jufNfs9e9A==
+  dependencies:
+    "@intlify/core-base" "9.0.0"
+    "@intlify/shared" "9.0.0"
+    "@vue/devtools-api" "^6.0.0-beta.5"
 
 vue-observe-visibility@^1.0.0:
   version "1.0.0"

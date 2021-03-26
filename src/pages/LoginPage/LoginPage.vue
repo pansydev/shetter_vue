@@ -27,6 +27,7 @@ import AuthMutation from "@shetter/queries/Auth.gql";
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import { tokenManager } from "@shetter/utils/tokenManager";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
+import { useLocalizationUtils } from "@shetter/utils/i18n";
 
 export default defineComponent({
   components: {
@@ -40,6 +41,7 @@ export default defineComponent({
     const errorMessage = ref<string>();
 
     const router = useRouter();
+    const { localizeErrorCode } = useLocalizationUtils();
 
     type Result = QueryResult<"auth", AuthenticationResult>;
 
@@ -60,7 +62,7 @@ export default defineComponent({
         return router.replace({ name: "home" });
       }
 
-      errorMessage.value = result.code;
+      errorMessage.value = localizeErrorCode(result.code);
     };
 
     onDone(() => {
