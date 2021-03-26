@@ -16,7 +16,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
 
-import CreatePostMutation from "@shetter/queries/CreatePost.gql";
+import CreatePostMutation from "@shetter/graphql/mutations/CreatePost.gql";
 
 import { useMutation } from "@vue/apollo-composable";
 import { Post, QueryResult } from "@shetter/models";
