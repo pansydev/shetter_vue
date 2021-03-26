@@ -12,6 +12,7 @@ export default ({ mode }: { mode: string }) => {
 
   return defineConfig({
     plugins: [vue(), graphql()],
+    base: "",
     resolve: {
       alias: {
         "@shetter": resolve(__dirname, "src"),
