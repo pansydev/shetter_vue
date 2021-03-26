@@ -1,18 +1,22 @@
 import { TokenPair } from "@shetter/models";
-import { OperationFailureResult } from "@shetter/models/results/shared";
 
 export const enum RefreshResultType {
   RefreshSuccessResult = "RefreshSuccessResult",
   RefreshFailureResult = "RefreshFailureResult",
 }
 
-export interface RefreshSuccessResult {
-  __typename: RefreshResultType.RefreshSuccessResult;
-  tokens: TokenPair;
+export const enum RefreshErrorCode {
+  InvalidRefreshToken = "Refresh:InvalidRefreshToken",
 }
 
-export interface RefreshFailureResult extends OperationFailureResult {
-  __typename: RefreshResultType.RefreshFailureResult;
+export interface RefreshSuccessResult {
+  readonly __typename: RefreshResultType.RefreshSuccessResult;
+  readonly tokens: TokenPair;
+}
+
+export interface RefreshFailureResult {
+  readonly __typename: RefreshResultType.RefreshFailureResult;
+  readonly code: RefreshErrorCode;
 }
 
 export type RefreshResult = RefreshSuccessResult | RefreshFailureResult;
