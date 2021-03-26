@@ -1,0 +1,16 @@
+mutation Register($username: String!, $password: String!) {
+  register(username: $username, password: $password) {
+    __typename
+
+    ... on RegistrationSuccessResult {
+      tokens {
+        accessToken
+        refreshToken
+      }
+    }
+
+    ... on RegistrationFailureResult {
+      code
+    }
+  }
+}

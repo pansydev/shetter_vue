@@ -10,14 +10,21 @@
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
     <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
-      <button class="flex-1 dark" type="submit">Регистрация</button>
+      <button :disabled="!canSubmit" class="flex-1 dark" type="submit">Регистрация</button>
       <RouterLink class="flex-1 button" to="/login">Войти</RouterLink>
     </form>
   </ShetterContainer>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, computed } from "vue";
+import { QueryResult, RegistrationResult, RegistrationResultType } from "@shetter/models";
+import { useMutation } from "@vue/apollo-composable";
+import { tokenManager } from "@shetter/utils/tokenManager";
+import { useRouter } from "vue-router";
+import { useLocalizationUtils } from "@shetter/utils/i18n";
+
+import RegisterMutation from "@shetter/queries/Register.gql";
 
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
@@ -31,13 +38,45 @@ export default defineComponent({
     const username = ref<string>();
     const password = ref<string>();
 
+    const canSubmit = computed(() => username.value && password.value);
+
     const errorMessage = ref<string>();
 
-    const handleFormSubmit = () => {
-      console.log(username, password);
+    const router = useRouter();
+    const { localizeErrorCode } = useLocalizationUtils();
+
+    type Result = QueryResult<"register", RegistrationResult>;
+
+    const { mutate: register, onDone, onError } = useMutation<Result>(RegisterMutation);
+
+    const handleFormSubmit = async () => {
+      const { data } = await register({
+        username: username.value,
+        password: password.value,
+      });
+
+      if (!data) return;
+
+      const { register: result } = data;
+
+      if (result.__typename === RegistrationResultType.RegistrationSuccessResult) {
+        tokenManager.setTokens(result.tokens);
+        return router.replace({ name: "home" });
+      }
+
+      errorMessage.value = localizeErrorCode(result.code);
     };
 
-    return { username, password, errorMessage, handleFormSubmit };
+    onDone(() => {
+      username.value = "";
+      password.value = "";
+    });
+
+    onError(error => {
+      errorMessage.value = error.message;
+    });
+
+    return { username, password, canSubmit, errorMessage, handleFormSubmit };
   },
 });
 </script>
