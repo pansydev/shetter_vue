@@ -10,22 +10,22 @@
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
     <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
-      <button class="flex-1 dark" type="submit">Войти</button>
+      <button :disabled="!canSubmit" class="flex-1 dark" type="submit">Войти</button>
       <RouterLink class="flex-1 button" to="/register">Регистрация</RouterLink>
     </form>
   </ShetterContainer>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
+import { tokenManager } from "@shetter/utils/tokenManager";
 import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@shetter/models";
 
 import AuthMutation from "@shetter/queries/Auth.gql";
 
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
-import { tokenManager } from "@shetter/utils/tokenManager";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
 import { useLocalizationUtils } from "@shetter/utils/i18n";
 
@@ -37,6 +37,8 @@ export default defineComponent({
   setup() {
     const username = ref<string>();
     const password = ref<string>();
+
+    const canSubmit = computed(() => username.value && password.value);
 
     const errorMessage = ref<string>();
 
@@ -74,7 +76,7 @@ export default defineComponent({
       errorMessage.value = error.message;
     });
 
-    return { username, password, errorMessage, handleFormSubmit };
+    return { username, password, errorMessage, handleFormSubmit, canSubmit };
   },
 });
 </script>
