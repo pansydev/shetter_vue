@@ -6,14 +6,38 @@
   NextLink,
   Observer,
   Operation,
+  split,
 } from "@apollo/client/core";
-import { Observable, relayStylePagination } from "@apollo/client/utilities";
+import { getMainDefinition, Observable, relayStylePagination } from "@apollo/client/utilities";
 import { setContext } from "@apollo/client/link/context";
 import { tokenManager } from "@shetter/utils/tokenManager";
 import { refreshManager } from "@shetter/utils/refreshManager";
 import { onError } from "@apollo/client/link/error";
+import { WebSocketLink } from "@apollo/client/link/ws";
 
 const httpLink = createHttpLink({ uri: "./graphql" });
+
+function createWebSocketUri(path: string) {
+  let result = window.location.protocol === "https:" ? "wss:" : "ws:";
+  result += `//${window.location.host}${path}`;
+  return result;
+}
+
+const wsLink = new WebSocketLink({
+  uri: createWebSocketUri("/graphql"),
+  options: {
+    reconnect: true,
+  },
+});
+
+const transportLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return definition.kind === "OperationDefinition" && definition.operation === "subscription";
+  },
+  wsLink,
+  httpLink
+);
 
 const authLink = setContext(async (request, { headers }) => {
   if (!tokenManager.authenticated()) {
@@ -65,6 +89,6 @@ const cache = new InMemoryCache({
 });
 
 export const apolloClient = new ApolloClient({
-  link: ApolloLink.from([errorLink, authLink, httpLink]),
+  link: ApolloLink.from([errorLink, authLink, transportLink]),
   cache,
 });

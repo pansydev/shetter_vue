@@ -13,7 +13,9 @@ import { computed, defineComponent } from "vue";
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { Connection, Post, QueryResult } from "@shetter/models";
 
-import GetPostsQuery from "@shetter/queries/GetPosts.gql";
+import GetPostsQuery from "@shetter/graphql/queries/GetPosts.gql";
+import PostCreatedSubscription from "@shetter/graphql/subscriptions/PostCreated.gql";
+
 import LoadingSpinner from "@shetter/components/LoadingSpinner.vue";
 import PostItem from "@shetter/pages/MainPage/components/PostItem.vue";
 import ViewportBlock from "@shetter/components/ViewportBlock.vue";
@@ -27,11 +29,23 @@ export default defineComponent({
   setup() {
     type Result = QueryResult<"posts", Connection<Post>>;
 
-    const { result, loading, fetchMore, variables } = useQuery<Result>(
+    const { result, loading, fetchMore, variables, subscribeToMore } = useQuery<Result>(
       GetPostsQuery,
       { pageSize: 5 },
       { nextFetchPolicy: "cache-only" }
     );
+
+    subscribeToMore({
+      document: PostCreatedSubscription,
+      updateQuery: (previousResult, { subscriptionData }) => {
+        return {
+          posts: {
+            ...previousResult.posts,
+            edges: [{ __typename: "PostEdge", node: subscriptionData.data.postCreated }, ...previousResult.posts.edges],
+          },
+        };
+      },
+    });
 
     const postConnection = useResult(result);
 

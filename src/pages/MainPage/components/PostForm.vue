@@ -27,21 +27,7 @@ export default defineComponent({
 
     type Result = QueryResult<"createPost", Post>;
 
-    const { mutate: createPost } = useMutation<Result>(CreatePostMutation, {
-      update: (cache, { data: { createPost } }) => {
-        const data = cache.readQuery({ query: GetPostsQuery });
-
-        cache.writeQuery({
-          query: GetPostsQuery,
-          data: {
-            posts: {
-              ...data.posts,
-              edges: [{ node: createPost }, ...data.posts.edges],
-            },
-          },
-        });
-      },
-    });
+    const { mutate: createPost } = useMutation<Result>(CreatePostMutation);
 
     const handleFormSubmit = () => {
       createPost({ input: { text: text.value } });
