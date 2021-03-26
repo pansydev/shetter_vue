@@ -22,7 +22,8 @@ import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
 import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@shetter/models";
 
-import AuthenticationMutation from "@shetter/queries/Authentication.gql";
+import AuthMutation from "@shetter/queries/Auth.gql";
+
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import { tokenManager } from "@shetter/utils/tokenManager";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
@@ -42,10 +43,10 @@ export default defineComponent({
 
     type Result = QueryResult<"auth", AuthenticationResult>;
 
-    const { mutate: authenticate, onDone, onError } = useMutation<Result>(AuthenticationMutation);
+    const { mutate: auth, onDone, onError } = useMutation<Result>(AuthMutation);
 
     const handleFormSubmit = async () => {
-      const { data } = await authenticate({
+      const { data } = await auth({
         username: username.value,
         password: password.value,
       });
