@@ -1,5 +1,5 @@
 import { tokenManager, TokenManager } from "@shetter/utils/tokenManager";
-import { QueryResult, RefreshResult, RefreshResultType } from "@shetter/models";
+import { QueryResult, RefreshErrorCode, RefreshResult, RefreshResultType } from "@shetter/models";
 import { apolloClient } from "@shetter/utils/client";
 import { Router } from "vue-router";
 import { router } from "@shetter/utils/router";
@@ -9,7 +9,7 @@ import RefreshMutation from "@shetter/queries/Refresh.gql";
 class RefreshManager {
   constructor(private readonly tokenManager: TokenManager, private readonly router: Router) {}
 
-  private runningRefresh?: Promise<boolean>;
+  private runningRefresh?: Promise<[boolean, RefreshErrorCode?]>;
 
   ensureRefreshed() {
     if (!this.tokenManager.expired) {
@@ -26,20 +26,21 @@ class RefreshManager {
 
     this.runningRefresh = this.refreshWorker();
 
-    this.runningRefresh.then(success => {
+    this.runningRefresh.then(([success, errorCode]) => {
       this.runningRefresh = undefined;
 
       if (!success) {
-        void this.router.replace({ name: "login" });
+        this.tokenManager.clearTokens();
+        void this.router.replace({ name: "login", params: { code: errorCode! } });
       }
     });
 
     return this.runningRefresh;
   }
 
-  private async refreshWorker(): Promise<boolean> {
+  private async refreshWorker(): Promise<[boolean, RefreshErrorCode?]> {
     if (!this.tokenManager.authenticated()) {
-      return false;
+      return [false, undefined];
     }
 
     type Result = QueryResult<"refresh", RefreshResult>;
@@ -52,15 +53,15 @@ class RefreshManager {
     });
 
     if (!data) {
-      return false;
+      return [false, undefined];
     }
 
     if (data.refresh.__typename !== RefreshResultType.RefreshSuccessResult) {
-      return false;
+      return [false, data.refresh.code];
     }
 
     this.tokenManager.setTokens(data.refresh.tokens);
-    return true;
+    return [true, undefined];
   }
 }
 

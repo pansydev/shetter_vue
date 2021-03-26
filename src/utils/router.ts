@@ -12,9 +12,11 @@ const routes: RouteRecordRaw[] = [
     component: MainPage,
   },
   {
+    name: "login",
     path: "/login",
     component: LoginPage,
     beforeEnter: AuthNavigationGuard.unauthorized(),
+    props: true,
   },
   {
     path: "/register",

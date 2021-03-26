@@ -35,7 +35,7 @@ const authLink = setContext(async (request, { headers }) => {
 });
 
 async function retry(operation: Operation, forward: NextLink, observer: Observer<unknown>) {
-  const success = await refreshManager.refresh();
+  const [success] = await refreshManager.refresh();
 
   if (success) {
     forward(operation).subscribe(observer);

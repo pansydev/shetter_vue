@@ -34,16 +34,21 @@ export default defineComponent({
     ErrorAlert,
     ShetterContainer,
   },
-  setup() {
+  props: {
+    code: {
+      type: String,
+    },
+  },
+  setup(props) {
     const username = ref<string>();
     const password = ref<string>();
 
     const canSubmit = computed(() => username.value && password.value);
 
-    const errorMessage = ref<string>();
-
     const router = useRouter();
     const { localizeErrorCode } = useLocalizationUtils();
+
+    const errorMessage = ref<string>(props.code && localizeErrorCode(props.code));
 
     type Result = QueryResult<"auth", AuthenticationResult>;
 
