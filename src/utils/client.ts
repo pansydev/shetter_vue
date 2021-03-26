@@ -19,12 +19,12 @@ const httpLink = createHttpLink({ uri: "./graphql" });
 
 function createWebSocketUri(path: string) {
   let result = window.location.protocol === "https:" ? "wss:" : "ws:";
-  result += `//${window.location.host}${path}`;
+  result += `//${window.location.host}${window.location.pathname}${path}`;
   return result;
 }
 
 const wsLink = new WebSocketLink({
-  uri: createWebSocketUri("/graphql"),
+  uri: createWebSocketUri("graphql"),
   options: {
     reconnect: true,
   },
