@@ -24,7 +24,7 @@ import { tokenManager } from "@shetter/utils/tokenManager";
 import { useRouter } from "vue-router";
 import { useLocalizationUtils } from "@shetter/utils/i18n";
 
-import RegisterMutation from "@shetter/queries/Register.gql";
+import RegisterMutation from "@shetter/graphql/mutations/Register.gql";
 
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";

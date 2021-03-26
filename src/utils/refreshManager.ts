@@ -4,7 +4,7 @@ import { apolloClient } from "@shetter/utils/client";
 import { Router } from "vue-router";
 import { router } from "@shetter/utils/router";
 
-import RefreshMutation from "@shetter/queries/Refresh.gql";
+import RefreshMutation from "@shetter/graphql/mutations/Refresh.gql";
 
 class RefreshManager {
   constructor(private readonly tokenManager: TokenManager, private readonly router: Router) {}

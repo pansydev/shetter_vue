@@ -23,7 +23,7 @@ import { useMutation } from "@vue/apollo-composable";
 import { tokenManager } from "@shetter/utils/tokenManager";
 import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@shetter/models";
 
-import AuthMutation from "@shetter/queries/Auth.gql";
+import AuthMutation from "@shetter/graphql/mutations/Auth.gql";
 
 import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
