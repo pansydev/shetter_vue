@@ -5,7 +5,7 @@
       <p class="text-xs text-gray-600 font-semibold ml-auto">{{ createdAt }}</p>
     </div>
     <div class="break-all">
-      <p class="text-sm text-gray-600 whitespace-pre">{{ post.text }}</p>
+      <p class="text-sm text-gray-600 whitespace-pre-wrap">{{ post.text }}</p>
     </div>
   </article>
 </template>
