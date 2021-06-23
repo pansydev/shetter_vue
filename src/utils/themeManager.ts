@@ -1,30 +1,25 @@
 export class ThemeManager {
-  private currentTheme: string;
+  private currentTheme?: string;
 
   constructor() {
-    this.currentTheme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    let theme = localStorage.getItem("theme");
 
-    if (
-      this.currentTheme !== "dark" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      this.currentTheme = "dark";
+    if (!theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      theme = "dark";
     }
 
-    this.switchTheme(this.currentTheme);
+    this.switchTheme(theme ?? "light");
   }
 
   switchTheme(name: string) {
     this.currentTheme = name;
-    console.log(name);
 
     localStorage.setItem("theme", name);
     document.documentElement.setAttribute("data-theme", name);
   }
 
   get theme(): string {
-    return this.currentTheme;
+    return this.currentTheme!;
   }
 }
 

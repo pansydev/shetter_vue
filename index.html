@@ -10,9 +10,12 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
 </head>
 
-<body>
+<body class="preload">
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
+  <script>
+    window.onload = () => document.body.classList.remove("preload");
+  </script>
 </body>
 
 </html>

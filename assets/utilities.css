@@ -30,3 +30,10 @@
 .w-full {
     width: 100%;
 }
+
+.preload * {
+    transition: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+}

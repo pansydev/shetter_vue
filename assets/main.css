@@ -13,10 +13,6 @@
 
   margin: 0;
   padding: 0;
-
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: .3s;
 }
 
 html {
@@ -31,6 +27,12 @@ body {
   justify-content: center;
 
   background-color: var(--background-color);
+}
+
+body:not(.preload), body * {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: .3s;
 }
 
 h1, h2, h3, h4, h5, h6, p, span {
