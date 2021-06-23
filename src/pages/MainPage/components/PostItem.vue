@@ -1,11 +1,11 @@
 ﻿<template>
-  <article class="w-full border border-gray-200 rounded-md p-4 space-y-1">
-    <div class="flex">
-      <p class="text-sm text-gray-600 font-semibold">{{ authorUsername }}</p>
-      <p class="text-xs text-gray-600 font-semibold ml-auto">{{ createdAt }}</p>
+  <article class="post-list__item w-full space-y-1">
+    <div class="post-list__item__header">
+      <p class="post-list__item__header__username">{{ authorUsername }}</p>
+      <p class="post-list__item__header__date">{{ createdAt }}</p>
     </div>
-    <div class="break-all">
-      <p class="text-sm text-gray-600 whitespace-pre-wrap">{{ post.text }}</p>
+    <div class="post-list__item__content">
+      <p class="post-list__item__content__text">{{ post.text }}</p>
     </div>
   </article>
 </template>

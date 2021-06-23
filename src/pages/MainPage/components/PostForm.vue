@@ -1,15 +1,11 @@
 <template>
-  <form
-    method="post"
-    @submit.prevent="handleFormSubmit"
-    class="flex items-center pr-4 border border-gray-200 rounded-md h-auto"
-  >
+  <form class="post-form" method="post" @submit.prevent="handleFormSubmit">
     <textarea
       v-model="text"
-      class="rounded-md border-none resize-none overflow-hidden text-sm w-full mr-auto p-4 focus:ring-0"
+      class="post-form__textarea w-full mr-auto"
       placeholder="Начните писать текст..."
     ></textarea>
-    <button :disabled="!canSubmit" class="dark py-3" type="submit">Опубликовать</button>
+    <button type="submit" class="dark py-3" :disabled="!canSubmit">Опубликовать</button>
   </form>
 </template>
 

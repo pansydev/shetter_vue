@@ -1,19 +1,19 @@
 <template>
-  <ShetterContainer class="space-y-6 self-center w-full 2xl:w-3/12 lg:w-4/12 md:w-6/12 sm:w-7/12">
-    <header class="text-center space-y-2">
-      <h1 class="text-xl font-semibold">Авторизация в Shetter</h1>
-      <p class="text-sm text-gray-500">Введите данные, чтобы войти в аккаунт</p>
+  <div class="container auth-container space-y-6">
+    <header class="container__header space-y-2">
+      <h1 class="container__header__title">Авторизация в Shetter</h1>
+      <p class="container__header__subtitle">Введите данные, чтобы войти в аккаунт</p>
     </header>
     <main class="space-y-2">
       <ErrorAlert :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
-    <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
-      <button :disabled="!canSubmit" class="flex-1 dark" type="submit">Войти</button>
-      <RouterLink class="flex-1 button" to="/register">Регистрация</RouterLink>
+    <form class="container__footer space-x-2" @submit.prevent="handleFormSubmit">
+      <button type="submit" class="flex-1 dark" :disabled="!canSubmit">Войти</button>
+      <RouterLink class="button flex-1" to="/register">Регистрация</RouterLink>
     </form>
-  </ShetterContainer>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,14 +25,12 @@ import { AuthenticationResult, AuthenticationResultType, QueryResult } from "@sh
 
 import AuthMutation from "@shetter/graphql/mutations/Auth.gql";
 
-import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
 import { useLocalizationUtils } from "@shetter/utils/i18n";
 
 export default defineComponent({
   components: {
     ErrorAlert,
-    ShetterContainer,
   },
   props: {
     code: {

@@ -1,19 +1,19 @@
 <template>
-  <ShetterContainer class="space-y-6 self-center w-full 2xl:w-3/12 lg:w-4/12 md:w-6/12 sm:w-7/12">
-    <header class="text-center space-y-2">
-      <h1 class="text-xl font-semibold">Регистрация в Shetter</h1>
-      <p class="text-sm text-gray-500">Введите данные, чтобы зарегистрироваться</p>
+  <div class="container auth-container space-y-6">
+    <header class="container__header space-y-2">
+      <h1 class="container__header__title">Регистрация в Shetter</h1>
+      <p class="container__header__subtitle">Введите данные, чтобы зарегистрироваться</p>
     </header>
     <main class="space-y-2">
       <ErrorAlert v-if="errorMessage" :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
-    <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
-      <button :disabled="!canSubmit" class="flex-1 dark" type="submit">Регистрация</button>
+    <form class="container__footer space-x-2" @submit.prevent="handleFormSubmit">
+      <button type="submit" class="flex-1 dark" :disabled="!canSubmit">Регистрация</button>
       <RouterLink class="flex-1 button" to="/login">Войти</RouterLink>
     </form>
-  </ShetterContainer>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,13 +26,11 @@ import { useLocalizationUtils } from "@shetter/utils/i18n";
 
 import RegisterMutation from "@shetter/graphql/mutations/Register.gql";
 
-import ShetterContainer from "@shetter/components/ShetterContainer.vue";
 import ErrorAlert from "@shetter/components/ErrorAlert.vue";
 
 export default defineComponent({
   components: {
     ErrorAlert,
-    ShetterContainer,
   },
   setup() {
     const username = ref<string>();

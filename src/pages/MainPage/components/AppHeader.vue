@@ -1,17 +1,19 @@
 <template>
-  <header class="flex items-center">
-    <div class="mr-auto">
-      <h1 class="text-lg font-semibold">Shetter</h1>
-      <p v-if="authenticated" class="text-sm text-gray-500">@{{ username }}</p>
+  <header class="app__header">
+    <div>
+      <h1 class="app_header__title">Shetter</h1>
+      <p v-if="authenticated" class="app_header__username">@{{ username }}</p>
     </div>
-    <RouterLink v-if="!authenticated" class="button" to="/login">Войти в аккаунт</RouterLink>
+    <button style="margin-right: 8px" @click="toggleTheme">{{ theme === "dark" ? "🌞" : "🌚" }}</button>
+    <RouterLink class="button" v-if="!authenticated" to="/login">Войти в аккаунт</RouterLink>
     <button v-else @click="logout">Выйти из аккаунта</button>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { tokenManager } from "@shetter/utils/tokenManager";
+import { themeManager } from "@shetter/utils/themeManager";
 
 export default defineComponent({
   props: {
@@ -22,6 +24,7 @@ export default defineComponent({
   },
   emits: ["update:authenticated"],
   setup(_, context) {
+    const theme = ref(themeManager.theme);
     const username = computed(() => tokenManager.username);
 
     const logout = () => {
@@ -29,7 +32,12 @@ export default defineComponent({
       context.emit("update:authenticated", false);
     };
 
-    return { username, logout };
+    const toggleTheme = () => {
+      theme.value = themeManager.theme === "light" ? "dark" : "light";
+      themeManager.switchTheme(theme.value);
+    };
+
+    return { username, logout, theme, toggleTheme };
   },
 });
 </script>

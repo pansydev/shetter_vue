@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="space-y-2 flex flex-col items-center">
+  <div class="post-list space-y-2">
     <div v-if="postConnection" class="w-full space-y-2">
       <PostItem v-for="post in posts" :key="post.id" :post="post" />
     </div>
