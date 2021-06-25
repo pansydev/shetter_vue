@@ -5,6 +5,7 @@ subscription PostCreated {
     creationTime
     author {
       username
+      isBot
     }
   }
 }
