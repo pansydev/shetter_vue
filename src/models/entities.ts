@@ -1,5 +1,5 @@
 export interface Entity {
-  readonly id: number;
+  readonly id: string;
 }
 
 export interface User extends Entity {
