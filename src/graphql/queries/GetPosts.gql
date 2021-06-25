@@ -7,6 +7,7 @@ query GetPosts($after: String, $pageSize: Int!) {
         creationTime
         author {
           username
+          isBot
         }
       }
     }

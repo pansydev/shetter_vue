@@ -4,6 +4,7 @@ export interface Entity {
 
 export interface User extends Entity {
   readonly username: string;
+  readonly isBot: boolean;
 }
 
 export interface Post extends Entity {

@@ -1,7 +1,10 @@
 ﻿<template>
   <article class="post-list__item w-full space-y-1">
     <div class="post-list__item__header">
-      <p class="post-list__item__header__username">{{ authorUsername }}</p>
+      <p class="post-list__item__header__username">
+        {{ authorUsername }}
+        <span class="badge" v-if="isAuthorBot">BOT</span>
+      </p>
       <p class="post-list__item__header__date">{{ createdAt }}</p>
     </div>
     <div class="post-list__item__content">
@@ -38,8 +41,9 @@ export default defineComponent({
     });
 
     const authorUsername = computed(() => post.author?.username ?? "unknown");
+    const isAuthorBot = computed(() => post.author?.isBot);
 
-    return { createdAt, authorUsername };
+    return { createdAt, authorUsername, isAuthorBot };
   },
 });
 </script>

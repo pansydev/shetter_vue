@@ -113,7 +113,21 @@ h1, h2, h3, h4, h5, h6, p, span {
   font-size: 0.875rem;
   line-height: 1.25rem;
 
-  color: var(--text-secondary-color)
+  color: var(--text-secondary-color);
+}
+
+span.badge {
+  font-weight: 600;
+  font-size: 0.55rem;
+  line-height: 1.25rem;
+
+  text-align: center;
+
+  border-radius: 2px;
+  padding: 4px 6px;
+
+  background-color: var(--button-light-secondary-color);
+  color: var(--text-secondary-color);
 }
 
 .post-list__item__header__date {
