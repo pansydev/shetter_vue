@@ -60,6 +60,20 @@ module.exports = {
             "code::after": {
               content: "1",
             },
+            "table thead tr, table thead tr th, table tbody tr, table tbody tr td": {
+              color: theme("colors.black.700"),
+              borderColor: theme("colors.gray.200"),
+              borderWidth: theme("borderWidth.DEFAULT"),
+            },
+            "table thead tr th, table tbody tr th": {
+              padding: "1rem",
+            },
+            "thead th:first-child, tbody td:first-child": {
+              paddingLeft: "16px",
+            },
+            "thead th:last-child, tbody td:last-child": {
+              paddingRight: "16px",
+            },
           },
         },
         dark: {
@@ -68,6 +82,10 @@ module.exports = {
               color: theme("colors.white"),
             },
             blockquote: {
+              borderColor: theme("colors.black.600"),
+            },
+            "table thead tr, table thead tr th, table tbody tr, table tbody tr td": {
+              color: theme("colors.white"),
               borderColor: theme("colors.black.600"),
             },
           },

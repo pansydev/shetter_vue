@@ -17,7 +17,7 @@ import { defineComponent, computed, PropType } from "vue";
 
 import { Post } from "@shetter/models";
 import { useNow } from "@shetter/utils/time";
-import { markdown } from "@shetter/utils/markdown";
+import markdown from "@shetter/utils/markdown";
 
 export default defineComponent({
   props: {
@@ -43,7 +43,7 @@ export default defineComponent({
     const authorUsername = computed(() => post.author?.username ?? "unknown");
     const isAuthorBot = computed(() => post.author?.isBot);
 
-    const markdownText = computed(() => markdown.render(post.text));
+    const markdownText = computed(() => markdown(post.text));
 
     return { createdAt, authorUsername, isAuthorBot, markdownText };
   },
