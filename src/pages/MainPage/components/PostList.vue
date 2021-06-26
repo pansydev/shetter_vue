@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="flex flex-col items-center space-y-6">
-    <div v-if="postConnection" class="w-full space-y-2">
+    <div class="w-full space-y-2" v-if="postConnection">
       <PostItem v-for="post in posts" :key="post.id" :post="post" />
     </div>
     <LoadingSpinner v-if="loading" />

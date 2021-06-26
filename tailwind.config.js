@@ -8,6 +8,9 @@ module.exports = {
     safeList: [],
   },
   darkMode: "class",
+  variants: {
+    typography: ["responsive", "dark"],
+  },
   theme: {
     fontFamily: {
       sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
@@ -38,6 +41,39 @@ module.exports = {
         ...colors.gray,
       },
     },
+    extend: {
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            "p, em, li, strong, code": {
+              color: theme("colors.black.700"),
+            },
+            a: {
+              color: colors.blue[500],
+            },
+            blockquote: {
+              borderColor: theme("colors.gray.200"),
+            },
+            "code::before": {
+              content: "1",
+            },
+            "code::after": {
+              content: "1",
+            },
+          },
+        },
+        dark: {
+          css: {
+            "p, em, li, strong, code": {
+              color: theme("colors.white"),
+            },
+            blockquote: {
+              borderColor: theme("colors.black.600"),
+            },
+          },
+        },
+      }),
+    },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };
