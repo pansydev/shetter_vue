@@ -36,7 +36,7 @@ body:not(.preload), body * {
 .container {
   @apply flex flex-col justify-center;
   @apply bg-white dark:bg-black-700;
-  @apply p-8 rounded shadow;
+  @apply p-8 pb-4 rounded shadow;
 
   height: fit-content;
 }
