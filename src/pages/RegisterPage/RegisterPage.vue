@@ -1,15 +1,15 @@
 <template>
-  <div class="container auth-container space-y-6">
-    <header class="container__header space-y-2">
-      <h1 class="container__header__title">Регистрация в Shetter</h1>
-      <p class="container__header__subtitle">Введите данные, чтобы зарегистрироваться</p>
+  <div class="container self-center space-y-6 w-full 2xl:w-3/12 lg:w-4/12 md:w-6/12 sm:w-7/12">
+    <header class="text-center space-y-2">
+      <h1 class="text-gray-700 dark:text-white text-lg font-semibold">Регистрация в Shetter</h1>
+      <p class="text-gray-400 text-sm">Введите данные, чтобы зарегистрироваться</p>
     </header>
     <main class="space-y-2">
       <ErrorAlert v-if="errorMessage" :message="errorMessage" />
       <input type="text" placeholder="Логин" v-model="username" />
       <input type="password" placeholder="Пароль" v-model="password" />
     </main>
-    <form class="container__footer space-x-2" @submit.prevent="handleFormSubmit">
+    <form class="flex space-x-2" @submit.prevent="handleFormSubmit">
       <button type="submit" class="flex-1 dark" :disabled="!canSubmit">Регистрация</button>
       <RouterLink class="flex-1 button" to="/login">Войти</RouterLink>
     </form>
@@ -18,10 +18,10 @@
 
 <script lang="ts">
 import { ref, defineComponent, computed } from "vue";
-import { QueryResult, RegistrationResult, RegistrationResultType } from "@shetter/models";
-import { useMutation } from "@vue/apollo-composable";
-import { tokenManager } from "@shetter/utils/tokenManager";
 import { useRouter } from "vue-router";
+import { useMutation } from "@vue/apollo-composable";
+import { QueryResult, RegistrationResult, RegistrationResultType } from "@shetter/models";
+import { tokenManager } from "@shetter/utils/tokenManager";
 import { useLocalizationUtils } from "@shetter/utils/i18n";
 
 import RegisterMutation from "@shetter/graphql/mutations/Register.gql";

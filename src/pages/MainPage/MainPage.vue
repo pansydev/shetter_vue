@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="container main-container space-y-6">
+  <div class="container space-y-6 w-full 2xl:w-4/12 lg:w-6/12 md:w-8/12 sm:my-4">
     <AppHeader v-model:authenticated="authenticated" />
     <PostForm v-if="authenticated" />
     <PostList />

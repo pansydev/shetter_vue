@@ -1,14 +1,14 @@
 ﻿<template>
-  <article class="post-list__item w-full space-y-1">
-    <div class="post-list__item__header">
-      <p class="post-list__item__header__username">
+  <article class="w-full space-y-2 p-4 rounded border border-gray-200 dark:border-black-600">
+    <div class="flex items-center">
+      <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold">
         {{ authorUsername }}
         <span class="badge" v-if="isAuthorBot">BOT</span>
       </p>
-      <p class="post-list__item__header__date">{{ createdAt }}</p>
+      <p class="ml-auto text-gray-700 dark:text-gray-300 text-xs font-semibold">{{ createdAt }}</p>
     </div>
-    <div class="post-list__item__content">
-      <p class="post-list__item__content__text">{{ post.text }}</p>
+    <div>
+      <p class="text-gray-700 dark:text-white text-sm" style="white-space: break-spaces">{{ post.text }}</p>
     </div>
   </article>
 </template>

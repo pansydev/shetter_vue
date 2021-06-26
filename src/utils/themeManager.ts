@@ -12,10 +12,11 @@ export class ThemeManager {
   }
 
   switchTheme(name: string) {
-    this.currentTheme = name;
+    document.documentElement.classList.remove(this.currentTheme!);
+    document.documentElement.classList.add(name);
 
+    this.currentTheme = name;
     localStorage.setItem("theme", name);
-    document.documentElement.setAttribute("data-theme", name);
   }
 
   get theme(): string {

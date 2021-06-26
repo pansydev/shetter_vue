@@ -1,10 +1,10 @@
 <template>
-  <header class="app__header">
-    <div>
-      <h1 class="app_header__title">Shetter</h1>
-      <p v-if="authenticated" class="app_header__username">@{{ username }}</p>
+  <header class="flex items-center">
+    <div class="mr-auto">
+      <h1 class="text-black-700 dark:text-white text-lg font-semibold">Shetter</h1>
+      <p v-if="authenticated" class="text-gray-400 text-sm">@{{ username }}</p>
     </div>
-    <button style="margin-right: 8px" @click="toggleTheme">{{ theme === "dark" ? "🌞" : "🌚" }}</button>
+    <button class="mr-2" @click="toggleTheme">{{ theme === "dark" ? "🌞" : "🌚" }}</button>
     <RouterLink class="button" v-if="!authenticated" to="/login">Войти в аккаунт</RouterLink>
     <button v-else @click="logout">Выйти из аккаунта</button>
   </header>
