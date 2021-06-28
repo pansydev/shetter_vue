@@ -34,6 +34,7 @@ module.exports = {
         900: "#000000",
       },
       red: "#dc2626",
+      blue: colors.blue[500],
       gray: {
         100: "#f5f5f5",
         200: "#e5e7eb",
@@ -45,11 +46,13 @@ module.exports = {
       typography: theme => ({
         DEFAULT: {
           css: {
-            "p, em, li, strong, code": {
+            color: theme("colors.black.700"),
+            overflowWrap: "break-word",
+            "p, em, li, strong, code, div": {
               color: theme("colors.black.700"),
             },
             a: {
-              color: colors.blue[500],
+              color: theme("colors.blue"),
             },
             blockquote: {
               borderColor: theme("colors.gray.200"),
@@ -78,6 +81,7 @@ module.exports = {
         },
         dark: {
           css: {
+            color: theme("colors.white"),
             "p, em, li, strong, code": {
               color: theme("colors.white"),
             },

@@ -88,3 +88,12 @@ textarea {
   @apply border-none placeholder-gray-500 placeholder-opacity-75;
   @apply focus:ring-0;
 }
+
+a.mention {
+  @apply bg-gray-100 dark:bg-black-600;
+  @apply text-black-700 dark:text-gray-200;
+
+  border-radius: 2px;
+  padding: 2px 4px;
+  text-decoration: none;
+}

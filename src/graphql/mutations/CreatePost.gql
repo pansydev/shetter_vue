@@ -5,6 +5,7 @@ mutation CreatePost($input: PostInput!) {
     creationTime
     author {
       username
+      isBot
     }
   }
 }
