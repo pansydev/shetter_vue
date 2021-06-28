@@ -36,7 +36,7 @@ const coreRuler = (md: MarkdownIt, state: StateCore): boolean => {
     }
 
     return newToken;
-  }
+  };
 
   for (let i = 0; i < blockTokens.length; i++) {
     const blockToken = blockTokens[i];
@@ -50,8 +50,9 @@ const coreRuler = (md: MarkdownIt, state: StateCore): boolean => {
       const token = tokens[j];
 
       if (token.type === "text" && MENTION_PATTERN.test(token.content)) {
-        const newTokens = token.content.split(MENTION_PATTERN)
-          .map((item, index) => ({ type: (index % 2 === 0 ? "text" : "mention"), content: item }))
+        const newTokens = token.content
+          .split(MENTION_PATTERN)
+          .map((item, index) => ({ type: index % 2 === 0 ? "text" : "mention", content: item }))
           .filter(item => item.content.length > 0)
           .map(item => makeToken(item.type, item.content));
 
@@ -63,7 +64,7 @@ const coreRuler = (md: MarkdownIt, state: StateCore): boolean => {
   return true;
 };
 
-export default function(md: MarkdownIt, options: MentionOptions) {
+export default function (md: MarkdownIt, options: MentionOptions) {
   md.renderer.rules.mention = (tokens, index) => {
     return renderMention(tokens, index, options);
   };
