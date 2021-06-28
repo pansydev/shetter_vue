@@ -11,7 +11,7 @@ markdown.disable(["lheading", "heading", "image"]);
 // Plugins
 markdown.use(markdownMention, {
   accountUrl(username: string) {
-    return `${import.meta.env.APP_URL}/user/${username}`;
+    return `${import.meta.env.VITE_APP_URL}/user/${username}`;
   },
 });
 
