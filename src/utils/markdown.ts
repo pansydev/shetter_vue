@@ -1,8 +1,11 @@
 import markdownIt from "markdown-it";
 import markdownMention from "@shetter/utils/markdown-mention";
+import markdownHighlight from "@shetter/utils/markdown-highlight";
 
 const markdown = markdownIt({
+  linkify: true,
   breaks: true,
+  highlight: markdownHighlight
 });
 
 // Constraints
