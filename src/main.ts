@@ -8,6 +8,7 @@ import { i18n } from "@shetter/utils/i18n";
 import App from "@shetter/App.vue";
 
 import "../assets/main.css";
+import "../assets/atom-one-dark.min.css";
 
 tokenManager.load();
 
